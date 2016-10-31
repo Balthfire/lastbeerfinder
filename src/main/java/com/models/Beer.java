@@ -2,6 +2,7 @@ package com.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 /**
  * Created by Menerith on 31-Oct-16.
@@ -23,19 +24,17 @@ public class Beer {
     private Double price;
     @NotNull
     @Column(name = "description")
-    private Double description;
+    private String description;
     @ManyToOne
     @JoinColumn(name = "idorigin")
     private Origin origin;
     @ManyToOne
     @JoinColumn(name = "idbeertype")
     private Type type;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "serve", joinColumns = @JoinColumn(name = "idbeer", referencedColumnName = "idbeer"),
+            inverseJoinColumns = @JoinColumn(name = "idbar", referencedColumnName = "idbar"))
+    private Set<Bar> bars;
 
-    public Origin getOrigin(){
-        return origin;
-    }
 
-    public Type getBeerType(){
-        return type;
-    }
 }
