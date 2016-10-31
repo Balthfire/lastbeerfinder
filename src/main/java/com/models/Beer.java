@@ -24,5 +24,18 @@ public class Beer {
     @NotNull
     @Column(name = "description")
     private Double description;
+    @ManyToOne
+    @JoinColumn(name = "idorigin")
+    private Origin origin;
+    @ManyToOne
+    @JoinColumn(name = "idbeertype")
+    private Type type;
 
+    public Origin getOrigin(){
+        return origin;
+    }
+
+    public Type getBeerType(){
+        return type;
+    }
 }
