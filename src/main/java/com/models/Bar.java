@@ -1,7 +1,10 @@
 package com.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,7 +17,7 @@ public class Bar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idbar")
-    private int idbar;
+    private String idbar;
     @NotNull
     @Column(name = "name")
     private String name;
@@ -40,7 +43,7 @@ public class Bar {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "serve", joinColumns = @JoinColumn(name = "idbar", referencedColumnName = "idbar"),
             inverseJoinColumns = @JoinColumn(name = "idbeer", referencedColumnName = "idbeer"))
-    private Set<Beer> beers;
+    private List<Beer> beers;
 
     public String getName() {
         return name;
@@ -98,11 +101,12 @@ public class Bar {
         this.latitude = latitude;
     }
 
-    public int getIdbar() {
+    public String getIdbar() {
         return idbar;
     }
 
-    public Set<Beer> getBeers() {
+    @JsonBackReference
+    public List<Beer> getBeers() {
         return beers;
     }
 }

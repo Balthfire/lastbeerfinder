@@ -1,7 +1,10 @@
 package com.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,13 +18,16 @@ public class Beer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idbeer")
-    private int idbeer;
+    private String idbeer;
     @NotNull
     @Column(name = "name")
     private String name;
     @NotNull
     @Column(name = "price")
     private Double price;
+    @NotNull
+    @Column(name = "price_pinte")
+    private Double price_pinte;
     @NotNull
     @Column(name = "description")
     private String description;
@@ -31,10 +37,66 @@ public class Beer {
     @ManyToOne
     @JoinColumn(name = "idbeertype")
     private Type type;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "serve", joinColumns = @JoinColumn(name = "idbeer", referencedColumnName = "idbeer"),
             inverseJoinColumns = @JoinColumn(name = "idbar", referencedColumnName = "idbar"))
-    private Set<Bar> bars;
+    private List<Bar> bars;
 
+    public String getIdbeer() {
+        return idbeer;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Origin getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(Origin origin) {
+        this.origin = origin;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    @JsonBackReference
+    public List<Bar> getBars() {
+        return bars;
+    }
+
+    public Double getPrice_pinte() {
+        return price_pinte;
+    }
+
+    public void setPrice_pinte(Double price_pinte) {
+        this.price_pinte = price_pinte;
+    }
 }
