@@ -20,7 +20,7 @@ public class BarController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getAllBars() {
+    public @ResponseBody ResponseEntity<?> getAllBars() {
         try{
             return new ResponseEntity<>(BarRepo.findAll(),HttpStatus.OK);
         }
@@ -32,17 +32,31 @@ public class BarController {
 
     /**
      * Récupération d'un bar avec son ID
-     * @param id
+     * @param idbar
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ResponseEntity<?> getBarWithId(@PathVariable String id) {
+    @RequestMapping(method = RequestMethod.GET, value = "/{idbar}")
+    public @ResponseBody ResponseEntity<?> getBarWithId(@PathVariable String idbar) {
         try{
-            return new ResponseEntity<>(BarRepo.findOne(id),HttpStatus.OK);
+            return new ResponseEntity<>(BarRepo.findOne(idbar),HttpStatus.OK);
         }
         catch (Exception e)
         {
             return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{idbar}")
+    public @ResponseBody ResponseEntity<?> delBar(@PathVariable String idbar) {
+        ResponseEntity<String> response = null;
+        try {
+            BarRepo.delete(idbar);
+            response = new ResponseEntity<String>(HttpStatus.GONE);
+        }catch (Exception e){
+            response= new ResponseEntity<String>(HttpStatus.FORBIDDEN);
+        }
+        return  response;
+    }
+
+
 }

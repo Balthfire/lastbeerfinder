@@ -1,7 +1,10 @@
 package com.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,7 +21,7 @@ public class Type {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
-    private Set<Beer> beers;
+    private List<Beer> beers;
 
 
     public int getIdbeer() {
@@ -33,8 +36,8 @@ public class Type {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
-    public Set<Beer> getBeers() {
+    @JsonBackReference
+    public List<Beer> getBeers() {
         return beers;
     }
 }

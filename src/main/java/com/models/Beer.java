@@ -25,9 +25,7 @@ public class Beer {
     @NotNull
     @Column(name = "price")
     private Double price;
-    @NotNull
-    @Column(name = "price_pinte")
-    private Double price_pinte;
+
     @NotNull
     @Column(name = "description")
     private String description;
@@ -92,11 +90,4 @@ public class Beer {
         return bars;
     }
 
-    public Double getPrice_pinte() {
-        return price_pinte;
-    }
-
-    public void setPrice_pinte(Double price_pinte) {
-        this.price_pinte = price_pinte;
-    }
 }
