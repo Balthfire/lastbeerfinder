@@ -1,0 +1,12 @@
+/beers         			- Renvoi toute les bières
+/beers/{idbeer}  			- Renvoi la bière spécifié en id
+/beers/{idbeer}/bars 		- Renvoi tout les bars liés à la bière spécifié en id
+/beers/origin/{idorigin}  - Renvoi toute les bières avec l'idorigin spécifié
+/beers/type/{idtype} 		- Renvoie toute les bières avec l'idtype spécifié
+/beers/type/{idtype}/origin/{idorigin} - Renvoie toute les bières ayant le type et l'origine spécifiée
+/beers/type/{idtype}/origin/{idorigin}/bars - Renvoie tout les bars qui servent des bières du type et origin spéicifiée
+
+/bars - Renvoi tout les bars
+/bars/{idbar} - Renvoi le bar spéicifié en id
+/bars/{idbar}/beers - Renvoi les bières du bar
+/bars/terrasse - Renvoi tout les bars ayant une terrasse
