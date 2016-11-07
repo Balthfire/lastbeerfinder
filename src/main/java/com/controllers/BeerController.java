@@ -19,6 +19,7 @@ import java.util.List;
 /**
  * Created by Menerith on 31-Oct-16.
  */
+@CrossOrigin(origins = "http://localhost", maxAge = 3600)
 @RestController
 @RequestMapping("/beers")
 public class BeerController {

@@ -15,7 +15,7 @@ import java.util.Set;
 public class Bar {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idbar")
     private String idbar;
     @NotNull
@@ -104,6 +104,27 @@ public class Bar {
     public String getIdbar() {
         return idbar;
     }
+
+    public Bar(String id,String name, String address, boolean terrasse, String open_hours, String happy_hours, Double longitude, Double latitude) {
+        this.idbar = id;
+        this.name = name;
+        this.address = address;
+        this.terrasse = terrasse;
+        this.open_hours = open_hours;
+        this.happy_hours = happy_hours;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
+    public Bar(String id,String name, String address,Double longitude, Double latitude) {
+        this.idbar = id;
+        this.name = name;
+        this.address = address;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
+    public Bar(){}
 
     @JsonBackReference
     public List<Beer> getBeers() {

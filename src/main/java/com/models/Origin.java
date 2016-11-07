@@ -15,7 +15,7 @@ import java.util.Set;
 public class Origin {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idorigin")
     private int idorigin;
     @NotNull

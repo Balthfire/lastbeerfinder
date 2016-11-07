@@ -1,5 +1,6 @@
 package se.walkercrou.places;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONArray;
@@ -214,6 +215,7 @@ public class GooglePlaces implements GooglePlacesInterface {
         this.requestHandler = requestHandler;
     }
 
+    @JsonBackReference
     @Override
     public List<Place> getNearbyPlaces(double lat, double lng, double radius, int limit, Param... extraParams) {
         try {

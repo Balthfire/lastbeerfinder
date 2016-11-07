@@ -14,7 +14,7 @@ import java.util.Set;
 @Table(name="type")
 public class Type {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idbeertype")
     private int idbeer;
     @NotNull
